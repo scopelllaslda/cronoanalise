@@ -142,7 +142,7 @@
         }
 
         .button-group button {
-            padding: 15px 20px;
+            padding: 15px;
             font-size: 18px;
             font-weight: bold;
             border: none;
@@ -152,7 +152,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-width: 80px;
+            min-width: 60px;
             flex: 1;
         }
 
@@ -164,6 +164,12 @@
         #conta-btn {
             background-color: var(--primary-color);
             color: white;
+        }
+
+        #pause-btn {
+            background-color: var(--warning-color);
+            color: white;
+            display: none;
         }
 
         #fim-btn {
@@ -255,6 +261,15 @@
             min-width: 150px;
         }
 
+        #agrupamento {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            flex: 1;
+            min-width: 150px;
+        }
+
         .filters button {
             padding: 12px 20px;
             background-color: var(--primary-color);
@@ -309,7 +324,6 @@
             font-size: 0.9em;
         }
 
-        /* Novos estilos adicionados */
         .expand-button {
             background: none;
             border: none;
@@ -380,7 +394,6 @@
             background-color: #f8f9fa;
         }
 
-        /* Estilos para a aba de Backup */
         .backup-container {
             display: flex;
             gap: 20px;
@@ -436,7 +449,6 @@
             display: none;
         }
 
-        /* Ajuste para o checkbox de vídeo */
         .video-checkbox-label {
             display: flex;
             align-items: center;
@@ -451,14 +463,12 @@
             height: 20px;
         }
 
-        /* Linha de total */
         .total-row td {
             font-weight: bold;
             background-color: #e3f2fd;
             font-size: 16px;
         }
 
-        /* Modal de confirmação */
         .modal {
             display: none;
             position: fixed;
@@ -520,7 +530,113 @@
             color: white;
         }
 
-        /* Ajustes para telas maiores */
+        .percentage-input {
+            width: 100%;
+            text-align: right;
+            padding: 10px 35px 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        .percentage-symbol {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #777;
+        }
+        .percentage-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .config-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            user-select: none;
+            transition: background-color 0.3s;
+        }
+
+        .config-toggle:hover {
+            background-color: #e3f2fd;
+        }
+
+        .config-toggle i {
+            transition: transform 0.3s;
+        }
+
+        .config-toggle.rotated i {
+            transform: rotate(180deg);
+        }
+
+        .config-container {
+            display: none;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            animation: fadeIn 0.3s;
+        }
+
+        .config-container.show {
+            display: block;
+        }
+
+        .config-form-group {
+            margin-bottom: 15px;
+        }
+
+        .config-form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .registro-desconsiderado {
+            position: relative;
+        }
+
+        .registro-desconsiderado::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 2px;
+            background-color: var(--danger-color);
+            transform: translateY(-50%);
+        }
+
+        .desconsiderar-checkbox {
+            margin-right: 10px;
+        }
+
+        .date-filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .date-filters input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            flex: 1;
+            min-width: 150px;
+        }
+
         @media (min-width: 768px) {
             .container {
                 max-width: 900px;
@@ -568,8 +684,8 @@
 
             .button-group button {
                 flex: none;
-                min-width: 120px;
-                padding: 15px 25px;
+                min-width: 80px;
+                padding: 15px;
             }
 
             #finalizar-crono {
@@ -600,9 +716,22 @@
                 padding: 20px 30px;
                 max-width: 400px;
             }
+
+            .config-form-group {
+                display: flex;
+                align-items: center;
+            }
+
+            .config-form-group label {
+                width: 150px;
+                margin-bottom: 0;
+            }
+
+            .percentage-wrapper {
+                width: 200px;
+            }
         }
 
-        /* Orientação paisagem em dispositivos móveis */
         @media (max-height: 500px) and (orientation: landscape) {
             .container {
                 padding: 15px;
@@ -623,8 +752,9 @@
             }
             
             .button-group button {
-                padding: 12px 15px;
+                padding: 12px;
                 font-size: 16px;
+                min-width: 50px;
             }
             
             .registros-section {
@@ -636,7 +766,14 @@
 </head>
 <body>
     <div class="container">
-        <h1>Software de Cronoanálise</h1>
+<div style="display: flex; align-items: center; justify-content: flex-start; gap: 15px; margin-bottom: 20px;">     <img src="data:image/png;base64,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powKjcGUC+GW5wqvZYaIiOhsprUWCz62LuAps0JKiKBhiWDGUn6XFD4NuwRweRRsUwhhwFbQEkpC5IRCWpkiBVvETGkNpW33YA4It29pntJWcyIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIqKziVhy+Zqva6ErtVacYpOIiIiIioLQ0mULO2x29w6uiyczcz1u0+mYiIiIiIgmRSKZQanfc8SsqwnlcpYNt4vJLhEREREVh2QqC2+JW0mnAyEiIiIimipMdomIiIioaDHZJSIiIqKixWSXiIiIiIoWk10iIiIiKlpMdomIiIioaDHZJSIiIqKixWSXiIiIiIoWk10iIiIiKlpMdomIiIioaDHZJSIiIqKixWSXiIiIiIoWk10iIiIiKlpMdomIiIioaDHZJSIiIqKixWSXiIiIiIoWk10iIiIiKlqmUlrYtoItldOxEBERERFNCttWUEoJMzqcMlLpLNxu0+mYiIiIiIgmRSKZQSbrEWZlue9bWvmDQoJNu0RERERUFERlwFTajjodBxEREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREZ2AmP+pWz7qFtpv25xBjYiIiIiKgxTS0LATZiaWfjKazs13u02nYyIiIiIimhSJVBZ+n7vV9LhcSggBt4vJLhEREREVB60Bb4kbpumSWgsDLpfhdExERERERJPCZRkwDUNLpwMhIiIiIpoqTHaJiIiIqGgx2SUiIiKiosVkl4iIiIiKFpNdIiIiIipaTHaJiIiIqGgx2SUiIiKiosVkl4iIiIiKFpNdIiIiIipaplJa2LaCLZXTsRARERERTQrbVlBKCTMaSxmpdBZut+l0TEREREREkyKRzCCT8wgzFPRdHyr3BoQCm3aJiIiIqCiUV3gN2CLmdBxEREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREQ0WcSCS2/9BAwdEEorp4MhIiIiIpoMWmgDtoiZsXjyl+l0dr7bbTodExERERHRpEgkMwj4PUfMQKlHeTwG3C4mu0RERERUHFwuA16vW5uGFNo0JExDOh0TEREREdGkMA0JU0rNDJeIiIiIipYZGU4Z6XQWHLNLRERERMVidMyuNMtCvjZR5iuBRtbpoIiIiIiIJkNFealPAO1Ox0FEREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREdLYSiz9563e1VjVCCtvpYIiIiIiIJoWAGxC9wjv/262pRGaO4TadDomIiIiIaFLYyQxcpSVtZtPMyj4BUQ2NjNNBERERERFNCqH9AAb+H2yQFzL1x+5WAAAAAElFTkSuQmCC" alt="Logo Bovenau" style="max-height: 60px;">
+        
+        <!-- Título centralizado na linha com azul escuro e negrito -->
+        <h1 style="margin: 0 auto; position: absolute; left: 50%; transform: translateX(-50%); 
+                  color: #003366; font-weight: bold;">
+            S-Time
+        </h1>
+    </div>
         
         <div class="tabs">
             <button class="tab-button active" data-target="analise">Cronoanálise</button>
@@ -655,6 +792,42 @@
                 <input type="text" id="operacao" placeholder="Digite a operação" required>
             </div>
             <div class="form-group">
+                <label for="maquina">Máquina:</label>
+                <input type="text" id="maquina" placeholder="Digite a máquina" required>
+            </div>
+            <div class="form-group">
+                <label for="operador">Operador:</label>
+                <input type="text" id="operador" placeholder="Digite o operador" required>
+            </div>
+            <div class="form-group">
+                <label for="cronoanalista">Cronoanalista:</label>
+                <input type="text" id="cronoanalista" placeholder="Digite o cronoanalista" required>
+            </div>
+            
+            <div class="config-toggle" id="config-toggle">
+                <i class="fas fa-cog"></i>
+                <span>Configuração</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            
+            <div class="config-container" id="config-container">
+                <div class="config-form-group">
+                    <label for="fator-ritmo">Fator de Ritmo:</label>
+                    <div class="percentage-wrapper">
+                        <input type="number" id="fator-ritmo" min="0" max="200" value="100" class="percentage-input">
+                        <span class="percentage-symbol">%</span>
+                    </div>
+                </div>
+                <div class="config-form-group">
+                    <label for="tolerancia">Tolerância:</label>
+                    <div class="percentage-wrapper">
+                        <input type="number" id="tolerancia" min="0" max="100" value="0" class="percentage-input">
+                        <span class="percentage-symbol">%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
                 <label class="video-checkbox-label">
                     <input type="checkbox" id="gravar-video"> Gravar vídeo do processo
                 </label>
@@ -663,9 +836,10 @@
             <div class="timer-container">
                 <div id="timer">00:00:00.000</div>
                 <div class="button-group">
-                    <button id="inicio-btn"><i class="fas fa-play"></i></button>
-                    <button id="conta-btn" disabled><i class="fas fa-stopwatch"></i></button>
-                    <button id="fim-btn" disabled><i class="fas fa-stop"></i></button>
+                    <button id="inicio-btn" title="Iniciar"><i class="fas fa-play"></i></button>
+                    <button id="conta-btn" disabled title="Contar"><i class="fas fa-stopwatch"></i></button>
+                    <button id="pause-btn" disabled title="Pausar"><i class="fas fa-pause"></i></button>
+                    <button id="fim-btn" disabled title="Finalizar"><i class="fas fa-stop"></i></button>
                     <button id="finalizar-crono" style="display: none;"><i class="fas fa-check"></i> Finalizar Cronoanálise</button>
                 </div>
             </div>
@@ -676,19 +850,31 @@
                     <table id="registros-atuais">
                         <thead>
                             <tr>
-                                <th style="width: 30%;">Item</th>
-                                <th style="width: 40%;">Operação</th>
-                                <th style="width: 30%;">Tempo (seg)</th>
+                                <th style="width: 5%;"></th>
+                                <th style="width: 15%;">Item</th>
+                                <th style="width: 20%;">Operação</th>
+                                <th style="width: 15%;">Máquina</th>
+                                <th style="width: 15%;">Operador</th>
+                                <th style="width: 15%;">Cronoanalista</th>
+                                <th style="width: 15%;">Tempo (seg)</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="2">Média:</td>
+                                <td colspan="6">Média:</td>
                                 <td id="media-tempo">-</td>
                             </tr>
+                            <tr>
+                                <td colspan="6">Maior Tempo:</td>
+                                <td id="maior-tempo">-</td>
+                            </tr>
+                            <tr>
+                                <td colspan="6">Menor Tempo:</td>
+                                <td id="menor-tempo">-</td>
+                            </tr>
                             <tr class="total-row">
-                                <td colspan="2">Total:</td>
+                                <td colspan="6">Total:</td>
                                 <td id="total-tempo">-</td>
                             </tr>
                         </tfoot>
@@ -703,14 +889,19 @@
         
         <div id="historico" class="tab-content">
             <h2>Histórico Completo</h2>
-            <div class="filters">
-                <select id="filtro-periodo">
-                    <option value="dia">Dia</option>
-                    <option value="mes">Mês</option>
-                    <option value="ano">Ano</option>
+            <div class="date-filters">
+                <select id="agrupamento">
+                    <option value="dia">Agrupar por Dia</option>
+                    <option value="mes">Agrupar por Mês</option>
+                    <option value="ano">Agrupar por Ano</option>
                 </select>
-                <input type="text" id="filter-item" placeholder="Filtrar por item...">
-                <input type="text" id="filter-operacao" placeholder="Filtrar por operação...">
+                <input type="date" id="data-inicio" placeholder="Data inicial">
+                <input type="date" id="data-fim" placeholder="Data final">
+            </div>
+            <div class="filters">
+                <input type="text" id="filter-maquina" placeholder="Filtrar por máquina...">
+                <input type="text" id="filter-operador" placeholder="Filtrar por operador...">
+                <input type="text" id="filter-cronoanalista" placeholder="Filtrar por cronoanalista...">
                 <button id="filtrar-btn">Filtrar</button>
                 <button class="export-btn" id="exportar-excel-btn">
                     <i class="fas fa-file-excel"></i> Exportar Excel
@@ -725,11 +916,14 @@
                 <table id="tabela-historico">
                     <thead>
                         <tr>
-                            <th style="width: 25%;">Item</th>
-                            <th style="width: 30%;">Operação</th>
-                            <th style="width: 15%;">Tempo Médio</th>
-                            <th style="width: 15%;">Data</th>
-                            <th style="width: 15%;">Ações</th>
+                            <th style="width: 15%;">Item</th>
+                            <th style="width: 20%;">Operação</th>
+                            <th style="width: 15%;">Máquina</th>
+                            <th style="width: 15%;">Operador</th>
+                            <th style="width: 15%;">Cronoanalista</th>
+                            <th style="width: 10%;">Tempo Médio</th>
+                            <th style="width: 10%;">Data</th>
+                            <th style="width: 5%;"></th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -759,7 +953,6 @@
         </div>
     </div>
 
-    <!-- Modal de confirmação para continuar cronômetro -->
     <div id="confirm-modal" class="modal">
         <div class="modal-content">
             <h3>Continuar cronômetro?</h3>
@@ -772,62 +965,215 @@
     </div>
 
     <script>
-        // Variáveis globais
-        let cronometroAtivo = false;
-        let inicioTempo;
-        let tempoPausado = 0;
-        let intervalo;
-        let registrosAtuais = [];
-        let historicoCompleto = [];
-        let mediaStream = null;
-        let mediaRecorder = null;
-        let recordedChunks = [];
-        let ultimoTempoContagem = 0;
-        let historicoChart = null;
-        let tempoAcumulado = 0;
-        let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+// Variáveis globais
+let cronometroAtivo = false;
+let cronometroPausado = false;
+let inicioTempo;
+let tempoPausado = 0;
+let intervalo;
+let registrosAtuais = [];
+let historicoCompleto = [];
+let ultimoTempoContagem = 0;
+let historicoChart = null;
+let tempoAcumulado = 0;
+let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-        // Inicialização quando o DOM estiver carregado
-        document.addEventListener('DOMContentLoaded', function() {
-            // Configura estado inicial dos botões
-            document.getElementById('conta-btn').disabled = true;
-            document.getElementById('fim-btn').disabled = true;
-            document.getElementById('finalizar-crono').style.display = 'none';
+// Novas variáveis para controle de vídeo
+let mediaRecorder;
+let recordedChunks = [];
+let isRecording = false;
+let shouldSaveRecording = false;
+let videoStream = null;
 
-            // Configura eventos de clique
-            configurarEventos();
+// Inicialização quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', function() {
+    // Configura estado inicial dos botões
+    document.getElementById('conta-btn').disabled = true;
+    document.getElementById('pause-btn').disabled = true;
+    document.getElementById('fim-btn').disabled = true;
+    document.getElementById('finalizar-crono').style.display = 'none';
 
-            // Carrega dados salvos
-            carregarDados();
-            
-            // Verifica suporte para gravação de vídeo
-            const gravarVideoCheckbox = document.getElementById('gravar-video');
-            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-                gravarVideoCheckbox.disabled = true;
-                gravarVideoCheckbox.parentNode.innerHTML += ' <span class="not-supported">(Não suportado)</span>';
+    // Configura eventos de clique
+    configurarEventos();
+
+    // Carrega dados salvos
+    carregarDados();
+    
+    // Verifica suporte para gravação de vídeo
+    const gravarVideoCheckbox = document.getElementById('gravar-video');
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        gravarVideoCheckbox.disabled = true;
+        gravarVideoCheckbox.parentNode.innerHTML += ' <span class="not-supported">(Não suportado)</span>';
+    }
+
+    // Configura datas padrão para filtro (últimos 30 dias)
+    const hoje = new Date();
+    const trintaDiasAtras = new Date();
+    trintaDiasAtras.setDate(hoje.getDate() - 30);
+    
+    document.getElementById('data-inicio').valueAsDate = trintaDiasAtras;
+    document.getElementById('data-fim').valueAsDate = hoje;
+});
+
+// Funções de controle de vídeo atualizadas
+async function iniciarGravacao() {
+    try {
+        const constraints = {
+            video: {
+                width: { ideal: 1280 },
+                height: { ideal: 720 },
+                facingMode: { ideal: 'environment' }
+            },
+            audio: false
+        };
+
+        videoStream = await navigator.mediaDevices.getUserMedia(constraints);
+        const videoPreview = document.getElementById('video-preview');
+        videoPreview.srcObject = videoStream;
+        videoPreview.play().catch(e => console.error('Erro ao reproduzir vídeo:', e));
+
+        recordedChunks = [];
+        mediaRecorder = new MediaRecorder(videoStream, { mimeType: 'video/webm' });
+
+        mediaRecorder.ondataavailable = function(e) {
+            if (e.data.size > 0) {
+                recordedChunks.push(e.data);
             }
+        };
+
+        mediaRecorder.start(1000); // Coleta dados a cada 1s
+        isRecording = true;
+        shouldSaveRecording = false;
+        
+    } catch (error) {
+        console.error('Erro ao acessar a câmera:', error);
+        document.getElementById('gravar-video').checked = false;
+    }
+}
+
+function pausarGravacao() {
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+        isRecording = false;
+    }
+}
+
+function continuarGravacao() {
+    if (!isRecording && mediaRecorder && videoStream) {
+        recordedChunks = [];
+        mediaRecorder = new MediaRecorder(videoStream, { mimeType: 'video/webm' });
+        
+        mediaRecorder.ondataavailable = function(e) {
+            if (e.data.size > 0) {
+                recordedChunks.push(e.data);
+            }
+        };
+        
+        mediaRecorder.start(1000);
+        isRecording = true;
+    }
+}
+
+function finalizarESalvarVideo() {
+    shouldSaveRecording = true;
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+        isRecording = false;
+    }
+
+    mediaRecorder.onstop = function() {
+        if (shouldSaveRecording && recordedChunks.length > 0) {
+            const blob = new Blob(recordedChunks, { type: 'video/webm' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `cronoanalise_${document.getElementById('item').value}_${new Date().toISOString().slice(0, 10)}.webm`;
+            document.body.appendChild(a);
+            a.click();
+            
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 100);
+        }
+        
+        // Para todos os tracks do stream
+        if (videoStream) {
+            videoStream.getTracks().forEach(track => track.stop());
+            videoStream = null;
+        }
+    };
+}
+
+// Atualização da função toggleVideo
+function toggleVideo() {
+    const gravarVideo = document.getElementById('gravar-video').checked;
+    const videoContainer = document.getElementById('video-container');
+    
+    if (gravarVideo) {
+        iniciarGravacao().then(() => {
+            videoContainer.style.display = 'block';
+        }).catch(error => {
+            console.error('Erro ao iniciar gravação:', error);
+            document.getElementById('gravar-video').checked = false;
+            videoContainer.style.display = 'none';
         });
+    } else {
+        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+            mediaRecorder.stop();
+        }
+        if (videoStream) {
+            videoStream.getTracks().forEach(track => track.stop());
+            videoStream = null;
+        }
+        videoContainer.style.display = 'none';
+    }
+}
+
+
+
 
         function configurarEventos() {
-            // Eventos das abas
-            document.querySelectorAll('.tab-button').forEach(botao => {
-                botao.addEventListener('click', function() {
-                    trocarAba(this.dataset.target);
-                });
+            // Eventos das abas - corrigido para usar event delegation
+            document.querySelector('.tabs').addEventListener('click', function(e) {
+                if (e.target.classList.contains('tab-button')) {
+                    trocarAba(e.target.dataset.target);
+                }
             });
 
-            // Eventos do cronômetro
+            // Eventos do cronômetro - garantindo que estão sendo atribuídos
             document.getElementById('inicio-btn').addEventListener('click', iniciarCronometro);
             document.getElementById('conta-btn').addEventListener('click', registrarContagem);
+            document.getElementById('pause-btn').addEventListener('click', pausarCronometro);
             document.getElementById('fim-btn').addEventListener('click', finalizarCronometro);
             document.getElementById('finalizar-crono').addEventListener('click', finalizarCronoanalyse);
             
+    document.getElementById('inicio-btn').addEventListener('click', function() {
+        if (document.getElementById('gravar-video').checked && !isRecording) {
+            continuarGravacao();
+        }
+    });
+
+    document.getElementById('pause-btn').addEventListener('click', function() {
+        if (document.getElementById('gravar-video').checked && isRecording) {
+            pausarGravacao();
+        }
+    });
+
+    document.getElementById('finalizar-crono').addEventListener('click', function() {
+        if (document.getElementById('gravar-video').checked) {
+            finalizarESalvarVideo();
+        }
+    });
+
             // Evento do checkbox de vídeo
             document.getElementById('gravar-video').addEventListener('change', toggleVideo);
             
             // Eventos do histórico
             document.getElementById('filtrar-btn').addEventListener('click', filterHistorico);
             document.getElementById('exportar-excel-btn').addEventListener('click', exportarParaExcel);
+            document.getElementById('agrupamento').addEventListener('change', atualizarGraficoHistorico);
             
             // Eventos de backup
             document.getElementById('exportar-backup').addEventListener('click', exportarBackup);
@@ -849,6 +1195,23 @@
                 reiniciarCronometro();
             });
 
+            // Evento para o menu de configuração - corrigido
+            document.getElementById('config-toggle').addEventListener('click', function(e) {
+                e.stopPropagation(); // Impede a propagação do evento
+                const container = document.getElementById('config-container');
+                container.classList.toggle('show');
+                
+                // Alterna o ícone de seta
+                const icon = this.querySelector('.fa-chevron-down');
+                if (icon) {
+                    icon.classList.toggle('rotated');
+                }
+            });
+
+            // Eventos para atualização automática da média
+            document.getElementById('fator-ritmo').addEventListener('input', atualizarRegistrosTabela);
+            document.getElementById('tolerancia').addEventListener('input', atualizarRegistrosTabela);
+
             // Melhorar toques em dispositivos móveis
             if (isMobile) {
                 document.querySelectorAll('button').forEach(btn => {
@@ -862,7 +1225,6 @@
             }
         }
 
-        // Função para trocar de aba
         function trocarAba(abaId) {
             // Remove a classe active de todas as abas e botões
             document.querySelectorAll(".tab-content").forEach(content => {
@@ -873,15 +1235,20 @@
             });
             
             // Adiciona a classe active na aba e botão clicados
-            document.getElementById(abaId).classList.add("active");
-            document.querySelector(`.tab-button[data-target="${abaId}"]`).classList.add("active");
+            const aba = document.getElementById(abaId);
+            if (aba) {
+                aba.classList.add("active");
+            }
+            const botaoAba = document.querySelector(`.tab-button[data-target="${abaId}"]`);
+            if (botaoAba) {
+                botaoAba.classList.add("active");
+            }
 
             if (abaId === 'historico') {
                 atualizarGraficoHistorico();
             }
         }
 
-        // Função para ligar/desligar a câmera
         function toggleVideo() {
             const gravarVideo = document.getElementById('gravar-video').checked;
             const videoContainer = document.getElementById('video-container');
@@ -905,13 +1272,37 @@
             }
         }
 
-        // Função para iniciar o cronômetro
         function iniciarCronometro() {
             const item = document.getElementById('item').value.trim();
             const operacao = document.getElementById('operacao').value.trim();
+            const maquina = document.getElementById('maquina').value.trim();
+            const operador = document.getElementById('operador').value.trim();
+            const cronoanalista = document.getElementById('cronoanalista').value.trim();
 
-            if (!item || !operacao) {
-                alert('Por favor, preencha o Item e a Operação antes de iniciar.');
+            // Validação mais robusta dos campos
+            if (!item) {
+                alert('Por favor, preencha o campo Item antes de iniciar.');
+                document.getElementById('item').focus();
+                return;
+            }
+            if (!operacao) {
+                alert('Por favor, preencha o campo Operação antes de iniciar.');
+                document.getElementById('operacao').focus();
+                return;
+            }
+            if (!maquina) {
+                alert('Por favor, preencha o campo Máquina antes de iniciar.');
+                document.getElementById('maquina').focus();
+                return;
+            }
+            if (!operador) {
+                alert('Por favor, preencha o campo Operador antes de iniciar.');
+                document.getElementById('operador').focus();
+                return;
+            }
+            if (!cronoanalista) {
+                alert('Por favor, preencha o campo Cronoanalista antes de iniciar.');
+                document.getElementById('cronoanalista').focus();
                 return;
             }
 
@@ -923,6 +1314,7 @@
 
             // Iniciar cronômetro normalmente
             cronometroAtivo = true;
+            cronometroPausado = false;
             inicioTempo = Date.now() - tempoAcumulado;
             ultimoTempoContagem = inicioTempo;
             registrosAtuais = [];
@@ -930,31 +1322,65 @@
 
             document.getElementById('inicio-btn').disabled = true;
             document.getElementById('conta-btn').disabled = false;
+            document.getElementById('pause-btn').disabled = false;
             document.getElementById('fim-btn').disabled = false;
             document.getElementById('finalizar-crono').style.display = 'none';
 
             // Desabilita edição dos campos durante a cronoanálise
             document.getElementById('item').disabled = true;
             document.getElementById('operacao').disabled = true;
+            document.getElementById('maquina').disabled = true;
+            document.getElementById('operador').disabled = true;
+            document.getElementById('cronoanalista').disabled = true;
             document.getElementById('gravar-video').disabled = true;
+            document.getElementById('fator-ritmo').disabled = true;
+            document.getElementById('tolerancia').disabled = true;
 
             // Inicia gravação de vídeo se estiver marcado
-            if (document.getElementById('gravar-video').checked && mediaRecorder && mediaRecorder.state === 'inactive') {
-                recordedChunks = [];
-                mediaRecorder.start(1000); // Coleta dados a cada 1s
+            if (document.getElementById('gravar-video').checked) {
+                if (mediaRecorder && mediaRecorder.state === 'inactive') {
+                    recordedChunks = [];
+                    mediaRecorder.start(1000); // Coleta dados a cada 1s
+                } else if (!mediaRecorder) {
+                    iniciarGravacao().then(() => {
+                        mediaRecorder.start(1000);
+                    }).catch(error => {
+                        console.error('Erro ao iniciar gravação:', error);
+                    });
+                }
             }
 
             intervalo = setInterval(atualizarCronometro, 10);
         }
 
-        // Função para continuar o cronômetro de onde parou
+        function pausarCronometro() {
+            if (!cronometroAtivo) return;
+
+            if (cronometroPausado) {
+                // Continuar cronômetro
+                cronometroPausado = false;
+                inicioTempo = Date.now() - tempoAcumulado;
+                ultimoTempoContagem = Date.now();
+                document.getElementById('pause-btn').innerHTML = '<i class="fas fa-pause"></i>';
+                intervalo = setInterval(atualizarCronometro, 10);
+            } else {
+                // Pausar cronômetro
+                cronometroPausado = true;
+                tempoAcumulado = Date.now() - inicioTempo;
+                clearInterval(intervalo);
+                document.getElementById('pause-btn').innerHTML = '<i class="fas fa-play"></i>';
+            }
+        }
+
         function continuarCronometro() {
             cronometroAtivo = true;
+            cronometroPausado = false;
             inicioTempo = Date.now() - tempoAcumulado;
             ultimoTempoContagem = Date.now();
 
             document.getElementById('inicio-btn').disabled = true;
             document.getElementById('conta-btn').disabled = false;
+            document.getElementById('pause-btn').disabled = false;
             document.getElementById('fim-btn').disabled = false;
             document.getElementById('finalizar-crono').style.display = 'none';
 
@@ -967,14 +1393,13 @@
             intervalo = setInterval(atualizarCronometro, 10);
         }
 
-        // Função para reiniciar o cronômetro
         function reiniciarCronometro() {
             tempoAcumulado = 0;
             document.getElementById('timer').textContent = '00:00:00.000';
         }
 
         function atualizarCronometro() {
-            if (!cronometroAtivo) return;
+            if (!cronometroAtivo || cronometroPausado) return;
 
             const tempoAtual = Date.now();
             const tempoDecorrido = tempoAtual - inicioTempo;
@@ -989,7 +1414,7 @@
         }
 
         function registrarContagem() {
-            if (!cronometroAtivo) return;
+            if (!cronometroAtivo || cronometroPausado) return;
 
             const tempoAtual = Date.now();
             const tempoDecorrido = (tempoAtual - ultimoTempoContagem) / 1000; // em segundos
@@ -997,13 +1422,24 @@
 
             const item = document.getElementById('item').value;
             const operacao = document.getElementById('operacao').value;
+            const maquina = document.getElementById('maquina').value;
+            const operador = document.getElementById('operador').value;
+            const cronoanalista = document.getElementById('cronoanalista').value;
+            const fatorRitmo = parseFloat(document.getElementById('fator-ritmo').value);
+            const tolerancia = parseFloat(document.getElementById('tolerancia').value);
 
             registrosAtuais.push({
                 item: item,
                 operacao: operacao,
+                maquina: maquina,
+                operador: operador,
+                cronoanalista: cronoanalista,
                 tempo: tempoDecorrido,
                 data: new Date().toISOString(),
-                hora: new Date().toLocaleTimeString()
+                hora: new Date().toLocaleTimeString(),
+                fatorRitmo: fatorRitmo,
+                tolerancia: tolerancia,
+                desconsiderado: false
             });
 
             atualizarRegistrosTabela();
@@ -1018,32 +1454,50 @@
             
             const item = document.getElementById('item').value;
             const operacao = document.getElementById('operacao').value;
+            const maquina = document.getElementById('maquina').value;
+            const operador = document.getElementById('operador').value;
+            const cronoanalista = document.getElementById('cronoanalista').value;
+            const fatorRitmo = parseFloat(document.getElementById('fator-ritmo').value);
+            const tolerancia = parseFloat(document.getElementById('tolerancia').value);
 
             registrosAtuais.push({
                 item: item,
                 operacao: operacao,
+                maquina: maquina,
+                operador: operador,
+                cronoanalista: cronoanalista,
                 tempo: tempoDecorrido,
                 data: new Date().toISOString(),
-                hora: new Date().toLocaleTimeString()
+                hora: new Date().toLocaleTimeString(),
+                fatorRitmo: fatorRitmo,
+                tolerancia: tolerancia,
+                desconsiderado: false
             });
 
             atualizarRegistrosTabela();
 
             // Para o cronômetro
             cronometroAtivo = false;
+            cronometroPausado = false;
             tempoAcumulado = Date.now() - inicioTempo;
             clearInterval(intervalo);
 
             // Atualiza interface
             document.getElementById('inicio-btn').disabled = false;
             document.getElementById('conta-btn').disabled = true;
+            document.getElementById('pause-btn').disabled = true;
             document.getElementById('fim-btn').disabled = true;
             document.getElementById('finalizar-crono').style.display = 'inline-block';
 
             // Habilita edição dos campos
             document.getElementById('item').disabled = false;
             document.getElementById('operacao').disabled = false;
+            document.getElementById('maquina').disabled = false;
+            document.getElementById('operador').disabled = false;
+            document.getElementById('cronoanalista').disabled = false;
             document.getElementById('gravar-video').disabled = false;
+            document.getElementById('fator-ritmo').disabled = false;
+            document.getElementById('tolerancia').disabled = false;
 
             // Parar gravação de vídeo se estiver ativa
             if (mediaRecorder && mediaRecorder.state !== 'inactive') {
@@ -1066,6 +1520,9 @@
             // Resetar interface
             document.getElementById('item').value = '';
             document.getElementById('operacao').value = '';
+            document.getElementById('maquina').value = '';
+            document.getElementById('operador').value = '';
+            document.getElementById('cronoanalista').value = '';
             document.getElementById('timer').textContent = '00:00:00.000';
             document.getElementById('finalizar-crono').style.display = 'none';
             registrosAtuais = [];
@@ -1080,32 +1537,85 @@
             }
         }
 
-        // Funções auxiliares
+        function calcularMediaETotal() {
+            // Filtra apenas os registros que não estão desconsiderados
+            const registrosValidos = registrosAtuais.filter(reg => !reg.desconsiderado);
+            
+            // Obtém os valores dos novos campos
+            const fatorRitmo = parseFloat(document.getElementById('fator-ritmo').value) / 100;
+            const tolerancia = parseFloat(document.getElementById('tolerancia').value) / 100;
+
+            // Calcula estatísticas básicas
+            const tempos = registrosValidos.map(reg => reg.tempo);
+            const maiorTempo = tempos.length > 0 ? Math.max(...tempos) : 0;
+            const menorTempo = tempos.length > 0 ? Math.min(...tempos) : 0;
+            const mediaSimples = tempos.length > 0 ? 
+                (tempos.reduce((total, tempo) => total + tempo, 0) / tempos.length) : 
+                0;
+                
+            // Aplica o fator de ritmo (agora invertido)
+            const tempoComFatorRitmo = mediaSimples / fatorRitmo;
+            
+            // Calcula a tolerância
+            const valorTolerancia = tempoComFatorRitmo * tolerancia;
+            
+            // Tempo médio final (com fator de ritmo e tolerância)
+            const tempoMedioFinal = tempoComFatorRitmo + valorTolerancia;
+
+            // Atualiza estatísticas na tabela
+            document.getElementById('media-tempo').textContent = registrosValidos.length > 0 ? tempoMedioFinal.toFixed(3) : '-';
+            document.getElementById('maior-tempo').textContent = registrosValidos.length > 0 ? maiorTempo.toFixed(3) : '-';
+            document.getElementById('menor-tempo').textContent = registrosValidos.length > 0 ? menorTempo.toFixed(3) : '-';
+            
+            // Atualiza total (soma apenas dos tempos não desconsiderados)
+            const total = registrosValidos.length > 0 ? 
+                registrosValidos.reduce((total, reg) => total + reg.tempo, 0).toFixed(3) : 
+                '-';
+            document.getElementById('total-tempo').textContent = total;
+        }
+
         function atualizarRegistrosTabela() {
             const tbody = document.querySelector('#registros-atuais tbody');
             tbody.innerHTML = '';
 
-            registrosAtuais.forEach(registro => {
+            registrosAtuais.forEach((registro, index) => {
                 const tr = document.createElement('tr');
+                if (registro.desconsiderado) {
+                    tr.classList.add('registro-desconsiderado');
+                }
+                
                 tr.innerHTML = `
+                    <td><input type="checkbox" class="desconsiderar-checkbox" data-index="${index}" ${registro.desconsiderado ? 'checked' : ''}></td>
                     <td>${registro.item}</td>
                     <td>${registro.operacao}</td>
+                    <td>${registro.maquina}</td>
+                    <td>${registro.operador}</td>
+                    <td>${registro.cronoanalista}</td>
                     <td>${registro.tempo.toFixed(3)}</td>
                 `;
                 tbody.appendChild(tr);
             });
 
-            // Atualiza média
-            const media = registrosAtuais.length > 0 ? 
-                (registrosAtuais.reduce((total, reg) => total + reg.tempo, 0) / registrosAtuais.length).toFixed(3) : 
-                '-';
-            document.getElementById('media-tempo').textContent = media;
-            
-            // Atualiza total
-            const total = registrosAtuais.length > 0 ? 
-                registrosAtuais.reduce((total, reg) => total + reg.tempo, 0).toFixed(3) : 
-                '-';
-            document.getElementById('total-tempo').textContent = total;
+            // Configura eventos dos checkboxes
+            document.querySelectorAll('.desconsiderar-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const index = parseInt(this.dataset.index);
+                    registrosAtuais[index].desconsiderado = this.checked;
+                    
+                    // Atualiza a linha para mostrar/ocultar o risco
+                    const tr = this.closest('tr');
+                    if (this.checked) {
+                        tr.classList.add('registro-desconsiderado');
+                    } else {
+                        tr.classList.remove('registro-desconsiderado');
+                    }
+                    
+                    // Recalcula a média
+                    calcularMediaETotal();
+                });
+            });
+
+            calcularMediaETotal();
         }
 
         async function iniciarGravacao() {
@@ -1189,126 +1699,183 @@
         }
 
         function atualizarHistorico() {
-            const tbody = document.querySelector('#tabela-historico tbody');
-            tbody.innerHTML = '';
+    const tbody = document.querySelector('#tabela-historico tbody');
+    tbody.innerHTML = '';
 
-            const historicoAgrupado = {};
-            const periodo = document.getElementById('filtro-periodo').value;
+    // Obtém os filtros
+    const dataInicio = document.getElementById('data-inicio').value;
+    const dataFim = document.getElementById('data-fim').value;
+    const filtroMaquina = document.getElementById('filter-maquina').value.toLowerCase();
+    const filtroOperador = document.getElementById('filter-operador').value.toLowerCase();
+    const filtroCronoanalista = document.getElementById('filter-cronoanalista').value.toLowerCase();
 
-            // Agrupa registros por item, operação e período
-            historicoCompleto.forEach(registro => {
-                const dataRegistro = new Date(registro.data);
-                let chavePeriodo;
+    // Filtra os registros
+    const registrosFiltrados = historicoCompleto.filter(registro => {
+        const dataRegistro = new Date(registro.data).toISOString().split('T')[0];
+        const maquina = registro.maquina ? registro.maquina.toLowerCase() : '';
+        const operador = registro.operador ? registro.operador.toLowerCase() : '';
+        const cronoanalista = registro.cronoanalista ? registro.cronoanalista.toLowerCase() : '';
+        
+        // Filtro por data
+        if (dataInicio && dataRegistro < dataInicio) return false;
+        if (dataFim && dataRegistro > dataFim) return false;
+        
+        // Filtro por texto
+        if (filtroMaquina && !maquina.includes(filtroMaquina)) return false;
+        if (filtroOperador && !operador.includes(filtroOperador)) return false;
+        if (filtroCronoanalista && !cronoanalista.includes(filtroCronoanalista)) return false;
+        
+        return true;
+    });
 
-                if (periodo === 'dia') {
-                    chavePeriodo = dataRegistro.toLocaleDateString();
-                } else if (periodo === 'mes') {
-                    chavePeriodo = `${dataRegistro.getMonth() + 1}/${dataRegistro.getFullYear()}`;
-                } else {
-                    chavePeriodo = dataRegistro.getFullYear().toString();
-                }
+    // Agrupa registros por sessão de cronoanálise
+    const historicoAgrupado = {};
+    let currentSessionId = null;
+    let sessionCounter = 0;
 
-                const key = `${registro.item}-${registro.operacao}-${chavePeriodo}`;
-                if (!historicoAgrupado[key]) {
-                    historicoAgrupado[key] = {
-                        item: registro.item,
-                        operacao: registro.operacao,
-                        tempos: [],
-                        registros: [],
-                        data: chavePeriodo
-                    };
-                }
-                historicoAgrupado[key].tempos.push(registro.tempo);
-                historicoAgrupado[key].registros.push(registro);
-            });
+    // Ordena os registros por data para agrupamento correto
+    registrosFiltrados.sort((a, b) => new Date(a.data) - new Date(b.data));
 
-            // Preenche a tabela com os dados agrupados
-            for (const key in historicoAgrupado) {
-                const item = historicoAgrupado[key];
-                const media = item.tempos.reduce((a, b) => a + b, 0) / item.tempos.length;
-                
-                // Linha principal
-                const tr = document.createElement('tr');
-                tr.className = 'main-row';
-                tr.innerHTML = `
-                    <td>${item.item}</td>
-                    <td>${item.operacao}</td>
-                    <td>${media.toFixed(3)}</td>
-                    <td>${item.data}</td>
-                    <td><button class="expand-button"><i class="fas fa-chevron-down"></i></button></td>
-                `;
-                tbody.appendChild(tr);
-
-                // Linha de detalhes
-                const detailsRow = document.createElement('tr');
-                detailsRow.className = 'details-row';
-                const detailsCell = document.createElement('td');
-                detailsCell.colSpan = 5;
-                detailsCell.className = 'details-cell';
-                
-                // Conteúdo dos detalhes
-                const detailsContent = document.createElement('div');
-                detailsContent.className = 'details-content';
-                
-                // Cria tabela de detalhes
-                const detailsTable = document.createElement('table');
-                detailsTable.className = 'details-table';
-                detailsTable.innerHTML = `
-                    <thead>
-                        <tr>
-                            <th>Data/Hora</th>
-                            <th>Tempo (seg)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${item.registros.map(reg => `
-                            <tr>
-                                <td>${new Date(reg.data).toLocaleString()}</td>
-                                <td>${reg.tempo.toFixed(3)}</td>
-                            </tr>
-                        `).join('')}
-                    </tbody>
-                `;
-                
-                detailsContent.appendChild(detailsTable);
-                detailsCell.appendChild(detailsContent);
-                detailsRow.appendChild(detailsCell);
-                tbody.appendChild(detailsRow);
-            }
-
-            // Configura eventos dos botões de expansão
-            document.querySelectorAll('.expand-button').forEach(botao => {
-                botao.addEventListener('click', function() {
-                    const row = this.closest('tr');
-                    const detailsRow = row.nextElementSibling;
-                    const icon = this.querySelector('i');
-                    
-                    detailsRow.classList.toggle('show');
-                    
-                    if (detailsRow.classList.contains('show')) {
-                        icon.classList.remove('fa-chevron-down');
-                        icon.classList.add('fa-chevron-up');
-                    } else {
-                        icon.classList.remove('fa-chevron-up');
-                        icon.classList.add('fa-chevron-down');
-                    }
-                });
-            });
-
-            return historicoAgrupado;
+    registrosFiltrados.forEach((registro, index) => {
+        // Se for o primeiro registro ou se houver mudança de item/operação ou intervalo maior que 5 minutos, nova sessão
+        if (index === 0 || 
+            (new Date(registro.data) - new Date(registrosFiltrados[index-1].data)) > 300000 ||
+            registro.item !== registrosFiltrados[index-1].item ||
+            registro.operacao !== registrosFiltrados[index-1].operacao) {
+            sessionCounter++;
+            currentSessionId = `${registro.item}-${registro.operacao}-${sessionCounter}`;
         }
 
-        // Função para exportar para Excel (CSV)
+        if (!historicoAgrupado[currentSessionId]) {
+            historicoAgrupado[currentSessionId] = {
+                item: registro.item,
+                operacao: registro.operacao,
+                maquina: registro.maquina,
+                operador: registro.operador,
+                cronoanalista: registro.cronoanalista,
+                tempos: [],
+                registros: [],
+                data: new Date(registro.data).toLocaleDateString(),
+                fatorRitmo: registro.fatorRitmo || 100,
+                tolerancia: registro.tolerancia || 0
+            };
+        }
+        
+        // Considera apenas registros não desconsiderados para os cálculos
+        if (!registro.desconsiderado) {
+            historicoAgrupado[currentSessionId].tempos.push(registro.tempo);
+        }
+        historicoAgrupado[currentSessionId].registros.push(registro);
+    });
+
+    // Preenche a tabela com os dados agrupados
+    for (const key in historicoAgrupado) {
+        const item = historicoAgrupado[key];
+        
+        // Calcula média apenas dos tempos não desconsiderados
+        const mediaSimples = item.tempos.length > 0 ? 
+            (item.tempos.reduce((a, b) => a + b, 0) / item.tempos.length) : 
+            0;
+        
+        // Aplica os cálculos de fator de ritmo e tolerância
+        const fatorRitmo = item.fatorRitmo / 100;
+        const tolerancia = item.tolerancia / 100;
+        
+        // Fator de ritmo invertido
+        const tempoComFatorRitmo = mediaSimples / fatorRitmo;
+        const valorTolerancia = tempoComFatorRitmo * tolerancia;
+        const tempoMedioFinal = tempoComFatorRitmo + valorTolerancia;
+        
+        // Linha principal
+        const tr = document.createElement('tr');
+        tr.className = 'main-row';
+        tr.innerHTML = `
+            <td>${item.item}</td>
+            <td>${item.operacao}</td>
+            <td>${item.maquina}</td>
+            <td>${item.operador}</td>
+            <td>${item.cronoanalista}</td>
+            <td>${item.tempos.length > 0 ? tempoMedioFinal.toFixed(3) : '-'}</td>
+            <td>${item.data}</td>
+            <td><button class="expand-button"><i class="fas fa-chevron-down"></i></button></td>
+        `;
+        tbody.appendChild(tr);
+
+        // Linha de detalhes
+        const detailsRow = document.createElement('tr');
+        detailsRow.className = 'details-row';
+        const detailsCell = document.createElement('td');
+        detailsCell.colSpan = 8;
+        detailsCell.className = 'details-cell';
+        
+        // Conteúdo dos detalhes
+        const detailsContent = document.createElement('div');
+        detailsContent.className = 'details-content';
+        
+        // Cria tabela de detalhes
+        const detailsTable = document.createElement('table');
+        detailsTable.className = 'details-table';
+        detailsTable.innerHTML = `
+            <thead>
+                <tr>
+                    <th>Desconsiderado</th>
+                    <th>Data/Hora</th>
+                    <th>Tempo (seg)</th>
+                    <th>Fator Ritmo</th>
+                    <th>Tolerância</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${item.registros.map(reg => `
+                    <tr class="${reg.desconsiderado ? 'registro-desconsiderado' : ''}">
+                        <td><input type="checkbox" ${reg.desconsiderado ? 'checked' : ''} disabled></td>
+                        <td>${new Date(reg.data).toLocaleString()}</td>
+                        <td>${reg.tempo.toFixed(3)}</td>
+                        <td>${reg.fatorRitmo || 100}%</td>
+                        <td>${reg.tolerancia || 0}%</td>
+                    </tr>
+                `).join('')}
+            </tbody>
+        `;
+        
+        detailsContent.appendChild(detailsTable);
+        detailsCell.appendChild(detailsContent);
+        detailsRow.appendChild(detailsCell);
+        tbody.appendChild(detailsRow);
+    }
+
+    // Configura eventos dos botões de expansão
+    document.querySelectorAll('.expand-button').forEach(botao => {
+        botao.addEventListener('click', function() {
+            const row = this.closest('tr');
+            const detailsRow = row.nextElementSibling;
+            const icon = this.querySelector('i');
+            
+            detailsRow.classList.toggle('show');
+            
+            if (detailsRow.classList.contains('show')) {
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            }
+        });
+    });
+
+    return historicoAgrupado;
+}
+
         function exportarParaExcel() {
             // Obtém todos os registros do histórico
-            let csvContent = "Item,Operação,Tempo (seg),Data,Hora\n";
+            let csvContent = "Item,Operação,Máquina,Operador,Cronoanalista,Tempo (seg),Fator Ritmo (%),Tolerância (%),Desconsiderado,Data,Hora\n";
             
             historicoCompleto.forEach(registro => {
                 const data = new Date(registro.data);
                 const dataFormatada = data.toLocaleDateString();
                 const horaFormatada = data.toLocaleTimeString();
                 
-                csvContent += `"${registro.item}","${registro.operacao}",${registro.tempo.toFixed(3)},"${dataFormatada}","${horaFormatada}"\n`;
+                csvContent += `"${registro.item}","${registro.operacao}","${registro.maquina || ''}","${registro.operador || ''}","${registro.cronoanalista || ''}",${registro.tempo.toFixed(3)},${registro.fatorRitmo || 100},${registro.tolerancia || 0},${registro.desconsiderado ? 'Sim' : 'Não'},"${dataFormatada}","${horaFormatada}"\n`;
             });
             
             // Adiciona também os registros atuais (que ainda não foram salvos no histórico)
@@ -1317,7 +1884,7 @@
                 const dataFormatada = data.toLocaleDateString();
                 const horaFormatada = data.toLocaleTimeString();
                 
-                csvContent += `"${registro.item}","${registro.operacao}",${registro.tempo.toFixed(3)},"${dataFormatada}","${horaFormatada}"\n`;
+                csvContent += `"${registro.item}","${registro.operacao}","${registro.maquina || ''}","${registro.operador || ''}","${registro.cronoanalista || ''}",${registro.tempo.toFixed(3)},${registro.fatorRitmo || 100},${registro.tolerancia || 0},${registro.desconsiderado ? 'Sim' : 'Não'},"${dataFormatada}","${horaFormatada}"\n`;
             });
             
             // Cria link para download
@@ -1331,28 +1898,11 @@
             document.body.removeChild(link);
         }
 
-        // Função de filtro
         function filterHistorico() {
-            const filterItem = document.getElementById('filter-item').value.toLowerCase();
-            const filterOperacao = document.getElementById('filter-operacao').value.toLowerCase();
-            const linhas = document.querySelectorAll('#tabela-historico tbody tr.main-row');
-
-            linhas.forEach(linha => {
-                const item = linha.cells[0].textContent.toLowerCase();
-                const operacao = linha.cells[1].textContent.toLowerCase();
-                const shouldShow = (item.includes(filterItem) && operacao.includes(filterOperacao));
-                
-                linha.style.display = shouldShow ? '' : 'none';
-                
-                // Mostra/esconde a linha de detalhes correspondente
-                const detailsRow = linha.nextElementSibling;
-                if (detailsRow && detailsRow.classList.contains('details-row')) {
-                    detailsRow.style.display = shouldShow ? '' : 'none';
-                }
-            });
+            atualizarHistorico();
+            atualizarGraficoHistorico();
         }
 
-        // Funções de backup
         function exportarBackup() {
             const dadosParaExportar = {
                 historico: historicoCompleto,
@@ -1406,23 +1956,58 @@
         function atualizarGraficoHistorico() {
             const historicoAgrupado = atualizarHistorico();
             const ctx = document.getElementById('historico-chart').getContext('2d');
+            const agrupamento = document.getElementById('agrupamento').value;
 
-            // Prepara dados para o gráfico
-            const labels = [];
-            const dados = [];
-
-            // Ordena por data (mais recente primeiro)
-            const itensOrdenados = Object.values(historicoAgrupado).sort((a, b) => {
-                return new Date(b.data) - new Date(a.data);
+            // Agrupa por dia/mês/ano conforme seleção
+            const analisesAgrupadas = {};
+            
+            Object.values(historicoAgrupado).forEach(item => {
+                const data = new Date(item.registros[0].data);
+                let chaveData;
+                
+                switch(agrupamento) {
+                    case 'mes':
+                        chaveData = `${data.getFullYear()}-${(data.getMonth()+1).toString().padStart(2, '0')}`;
+                        break;
+                    case 'ano':
+                        chaveData = data.getFullYear().toString();
+                        break;
+                    case 'dia':
+                    default:
+                        chaveData = data.toISOString().split('T')[0];
+                }
+                
+                if (!analisesAgrupadas[chaveData]) {
+                    analisesAgrupadas[chaveData] = {
+                        data: chaveData,
+                        count: 0,
+                        itens: new Set()
+                    };
+                }
+                
+                const chaveItem = `${item.item}-${item.operacao}-${item.maquina}-${item.operador}-${item.cronoanalista}`;
+                analisesAgrupadas[chaveData].itens.add(chaveItem);
+                analisesAgrupadas[chaveData].count = analisesAgrupadas[chaveData].itens.size;
             });
 
-            // Limita a 10 itens para o gráfico não ficar poluído
-            const itensParaGrafico = itensOrdenados.slice(0, 10);
-
-            itensParaGrafico.forEach(item => {
-                labels.push(`${item.item} - ${item.operacao} (${item.data})`);
-                dados.push(item.tempos.length);
+            // Ordena as datas
+            const chavesOrdenadas = Object.keys(analisesAgrupadas).sort((a, b) => {
+                return new Date(a) - new Date(b);
             });
+
+            // Formata os labels conforme o agrupamento
+            const labels = chavesOrdenadas.map(chave => {
+                if (agrupamento === 'ano') {
+                    return chave;
+                } else if (agrupamento === 'mes') {
+                    const [ano, mes] = chave.split('-');
+                    return `${mes}/${ano}`;
+                } else {
+                    return new Date(chave).toLocaleDateString('pt-BR');
+                }
+            });
+            
+            const dados = chavesOrdenadas.map(chave => analisesAgrupadas[chave].count);
 
             // Destrói gráfico anterior se existir
             if (historicoChart) {
@@ -1435,7 +2020,7 @@
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Quantidade de Cronoanálises',
+                        label: `Análises Únicas por ${agrupamento === 'ano' ? 'Ano' : agrupamento === 'mes' ? 'Mês' : 'Dia'}`,
                         data: dados,
                         backgroundColor: '#3498db',
                         borderColor: '#2980b9',
@@ -1450,13 +2035,13 @@
                             beginAtZero: true,
                             title: {
                                 display: true,
-                                text: 'Quantidade'
+                                text: 'Quantidade de Análises'
                             }
                         },
                         x: {
                             title: {
                                 display: true,
-                                text: 'Item - Operação (Período)'
+                                text: agrupamento === 'ano' ? 'Ano' : agrupamento === 'mes' ? 'Mês' : 'Dia'
                             },
                             ticks: {
                                 autoSkip: false,
@@ -1472,6 +2057,7 @@
         // Garantindo que todas as funções estão no escopo global
         window.iniciarCronometro = iniciarCronometro;
         window.registrarContagem = registrarContagem;
+        window.pausarCronometro = pausarCronometro;
         window.finalizarCronometro = finalizarCronometro;
         window.finalizarCronoanalyse = finalizarCronoanalyse;
         window.trocarAba = trocarAba;
